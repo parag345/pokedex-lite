@@ -1,6 +1,6 @@
 # Pokédex Lite
 
-A modern, responsive, and feature-rich Pokédex web application built with Next.js 13, TypeScript, and TailwindCSS. Browse, search, filter, and save your favorite Pokémon with a beautiful, production-ready interface.
+A modern, responsive, and feature-rich Pokédex web application built with Next.js 13, TypeScript, and TailwindCSS. Browse, search, filter, and save your favorite Pokémon with a clean and intuitive interface.
 
 ![Pokédex Lite](https://images.pexels.com/photos/1310847/pexels-photo-1310847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 
@@ -8,294 +8,204 @@ A modern, responsive, and feature-rich Pokédex web application built with Next.
 
 ### Core Features
 
-- **Pokemon Listing**: Browse through a comprehensive grid of Pokémon with beautiful cards
-- **Real-time Search**: Instantly filter Pokémon by name as you type
-- **Type Filtering**: Filter Pokémon by single or multiple types (Fire, Water, Grass, etc.)
-- **Pagination**: Navigate through pages with an elegant pagination system
-- **Favorites System**: Save your favorite Pokémon to localStorage with a dedicated favorites page
-- **Detailed View**: Click any Pokémon to view detailed information including:
-  - High-quality official artwork
-  - Types with color-coded badges
-  - Height and weight
-  - Base stats with animated progress bars
-  - Abilities (including hidden abilities)
+- **Pokemon Listing**: Browse through a grid of Pokémon with clean, responsive cards.
+- **Real-time Search**: Instantly filter Pokémon by name as you type.
+- **Type Filtering**: Filter Pokémon by single or multiple types (Fire, Water, Grass, etc.).
+- **Pagination**: Navigate easily between pages.
+- **Favorites System**: Save your favorite Pokémon to `localStorage`.
+- **Detailed View**: Click on a Pokémon to open a modal with:
+  - Official artwork  
+  - Types  
+  - Stats  
+  - Abilities  
+  - Height and weight  
 
-### Bonus Features
+### Additional Features
 
-- **Google OAuth**: Sign in with your Google account using NextAuth.js
-- **Smooth Animations**: Powered by Framer Motion for delightful interactions
-  - Card hover effects
-  - Modal transitions
-  - Pagination animations
-  - Stat bar animations
-- **Responsive Design**: Fully responsive from mobile to desktop
-  - Mobile: 1-2 columns
-  - Tablet: 3-4 columns
-  - Desktop: 5-6 columns
-- **Loading States**: Beautiful skeleton loaders while data fetches
-- **Error Handling**: Friendly error messages with retry functionality
-- **SEO Optimized**: Proper metadata and semantic HTML
+- **Smooth UI**: Fully responsive design (mobile → desktop)
+- **Loading States**: Skeleton loaders while data is being fetched
+- **Error Handling**: Clean error messages with retry option
+- **SEO optimized** using Next.js metadata
 
 ## Tech Stack
 
 - **Framework**: Next.js 13 (App Router)
 - **Language**: TypeScript
 - **Styling**: TailwindCSS
-- **Animations**: Framer Motion
-- **Authentication**: NextAuth.js (Google OAuth)
 - **API**: PokéAPI (https://pokeapi.co)
 - **Icons**: Lucide React
 - **State Management**: React Hooks
-- **Storage**: localStorage for favorites
+- **Storage**: Browser localStorage (Favorites)
 
 ## Project Structure
 
-```
 pokedex-lite/
 ├── app/
-│   ├── api/
-│   │   └── auth/
-│   │       └── [...nextauth]/
-│   │           └── route.ts          # NextAuth API routes
-│   ├── favorites/
-│   │   └── page.tsx                  # Favorites page
-│   ├── layout.tsx                    # Root layout with providers
-│   ├── page.tsx                      # Home page with Pokemon grid
-│   ├── providers.tsx                 # SessionProvider wrapper
-│   └── globals.css                   # Global styles
+│ ├── favorites/
+│ │ └── page.tsx # Favorites page
+│ ├── layout.tsx # Root layout
+│ ├── page.tsx # Home page (listing + filters)
+│ ├── providers.tsx # Providers
+│ └── globals.css # Global styles
 ├── components/
-│   ├── ErrorMessage.tsx              # Error display component
-│   ├── Header.tsx                    # Navigation header
-│   ├── LoadingSkeleton.tsx           # Loading skeleton components
-│   ├── Pagination.tsx                # Pagination controls
-│   ├── PokemonCard.tsx               # Individual Pokemon card
-│   ├── PokemonGrid.tsx               # Grid layout for cards
-│   ├── PokemonModal.tsx              # Pokemon detail modal
-│   ├── SearchBar.tsx                 # Search input with debounce
-│   └── TypeFilter.tsx                # Type filter dropdown
+│ ├── ErrorMessage.tsx
+│ ├── LoadingSkeleton.tsx
+│ ├── Pagination.tsx
+│ ├── PokemonCard.tsx
+│ ├── PokemonGrid.tsx
+│ ├── PokemonModal.tsx
+│ ├── SearchBar.tsx
+│ └── TypeFilter.tsx
 ├── hooks/
-│   ├── useFavorites.ts               # Favorites management hook
-│   └── usePokemon.ts                 # Pokemon data fetching hooks
+│ ├── useFavorites.ts
+│ └── usePokemon.ts
 ├── services/
-│   ├── api.ts                        # Base API client
-│   └── pokemonService.ts             # Pokemon API endpoints
+│ ├── api.ts
+│ └── pokemonService.ts
 ├── utils/
-│   └── types.ts                      # TypeScript interfaces
-└── public/                           # Static assets
-```
+│ └── types.ts
+└── public/
+
+bash
+Copy code
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18.x or higher
+- Node.js 18+
 - npm or yarn
-- Google OAuth credentials (optional, for authentication)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/pokedex-lite.git
+git clone https://github.com/parag345/pokedex-lite.git
 cd pokedex-lite
-```
+Install dependencies:
 
-2. Install dependencies:
-```bash
+bash
+Copy code
 npm install
-```
+Run the development server:
 
-3. Create a `.env.local` file in the root directory:
-```bash
-cp .env.example .env.local
-```
-
-4. Configure environment variables (optional for OAuth):
-```env
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your-secret-key-here
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-```
-
-To generate a secret key:
-```bash
-openssl rand -base64 32
-```
-
-To get Google OAuth credentials:
-- Go to [Google Cloud Console](https://console.cloud.google.com/)
-- Create a new project or select existing
-- Enable Google+ API
-- Create OAuth 2.0 credentials
-- Add authorized redirect URI: `http://localhost:3000/api/auth/callback/google`
-
-5. Run the development server:
-```bash
+bash
+Copy code
 npm run dev
-```
+Open your browser:
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-### Build for Production
-
-```bash
+arduino
+Copy code
+http://localhost:3000
+Build for Production
+bash
+Copy code
 npm run build
 npm start
-```
-
-### Type Check
-
-```bash
+Type Checking
+bash
+Copy code
 npm run typecheck
-```
+Key Features Explained
+Search Functionality
+Debounced search input for improved performance and reduced re-renders.
 
-## Key Features Explained
+Type Filtering
+Select one or multiple Pokémon types. The UI updates instantly with matching results.
 
-### Search Functionality
-The search bar includes debouncing to prevent excessive API calls. It filters Pokémon in real-time as you type, working seamlessly with type filters and pagination.
+Favorites System
+Favorite Pokémon persist across sessions using localStorage. View them anytime on the Favorites Page.
 
-### Type Filtering
-Click on type badges to filter Pokémon. You can select multiple types simultaneously. Type badges use color-coded styling for easy identification:
-- Fire: Red
-- Water: Blue
-- Grass: Green
-- Electric: Yellow
-- And more...
+Pokémon Detail Modal
+Shows detailed information with a smooth UI experience:
 
-### Favorites System
-- Click the heart icon on any Pokémon card to add/remove from favorites
-- Favorites are stored in browser localStorage
-- Access all favorites from the dedicated Favorites page
-- Favorites persist across sessions
+Artwork
 
-### Pokemon Detail Modal
-Click any Pokémon card to open a detailed modal featuring:
-- High-resolution official artwork
-- Complete type information
-- Physical attributes (height, weight)
-- Base stats with color-coded progress bars
-- All abilities including hidden ones
-- Smooth animations on open/close
+Stats
 
-### Google Authentication
-- Sign in with Google OAuth for a personalized experience
-- User profile displayed in header
-- Protected routes (future enhancement)
-- Secure session management
+Types
 
-## Challenges & Solutions
+Abilities
 
-### Challenge 1: API Rate Limiting
-**Problem**: PokéAPI doesn't provide detailed info in list endpoint
-**Solution**: Batch fetch detailed data for each Pokémon in the current page with Promise.all(), with error handling for failed requests
+Physical attributes
 
-### Challenge 2: Search + Filter + Pagination
-**Problem**: Managing multiple filters simultaneously
-**Solution**: Used useMemo to efficiently compute filtered results, disabling pagination when filters are active
+Challenges & Solutions
+Challenge 1: Fetching Pokémon Details Efficiently
+Problem: API list endpoint doesn't include full Pokémon info.
+Solution: Fetch list first, then fetch individual details using Promise.all().
 
-### Challenge 3: Favorite Pokémon Loading
-**Problem**: Loading detailed data for potentially many favorites
-**Solution**: Parallel fetching with Promise.all() and skeleton loaders for better UX
+Challenge 2: Filtering + Pagination
+Problem: Search and type filters shouldn't interfere with pagination.
+Solution: Filters apply on fetched data, and pagination is disabled when filters are active.
 
-### Challenge 4: Modal Animations
-**Problem**: Smooth animations while maintaining accessibility
-**Solution**: Framer Motion AnimatePresence with proper focus management and keyboard navigation
+Challenge 3: Loading Many Favorites
+Problem: Multiple API requests for each favorited Pokémon.
+Solution: Parallel fetching with skeleton loaders for smooth UX.
 
-## Performance Optimizations
+Performance Optimizations
+Debounced search
 
-- Debounced search input (300ms delay)
-- Memoized filtered results
-- Lazy loading of Pokémon details
-- Optimized re-renders with useCallback
-- Image optimization with proper sizing
-- Skeleton loaders for perceived performance
+Memoized filtered lists
 
-## Browser Support
+Lazy-loaded Pokémon details
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+Shallow renders using useCallback
 
-## API Reference
+Optimized static image sizing
 
-This project uses the [PokéAPI](https://pokeapi.co/):
-- `/pokemon?limit=20&offset=0` - List Pokémon with pagination
-- `/pokemon/{id}` - Get Pokémon details
-- `/type` - Get all Pokémon types
-- `/type/{name}` - Get Pokémon by type
+Browser Support
+Chrome
 
-## Future Enhancements
+Firefox
 
-- [ ] Infinite scroll option
-- [ ] Advanced filters (generation, stats range)
-- [ ] Compare Pokémon side-by-side
-- [ ] Evolution chain visualization
-- [ ] Move list and details
-- [ ] Pokémon cries (audio)
-- [ ] Share favorite lists
-- [ ] PWA support for offline access
-- [ ] Dark mode toggle
-- [ ] Multi-language support
+Safari
 
-## Deployment
+Edge
 
-### Vercel (Recommended)
+API Reference
+This project uses the PokéAPI:
 
-1. Push your code to GitHub
-2. Import the repository in Vercel
-3. Add environment variables in project settings
-4. Deploy
+GET /pokemon?limit=20&offset=0
 
-### Other Platforms
+GET /pokemon/{id}
 
-The app can be deployed to any platform supporting Next.js:
-- Netlify
-- AWS Amplify
-- Railway
-- Render
+GET /type
 
-## Contributing
+GET /type/{name}
 
-Contributions are welcome! Please follow these steps:
+Future Enhancements
+ Infinite scrolling
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+ Compare Pokémon
 
-## License
+ Evolution chain
 
-This project is licensed under the MIT License.
+ Audio (Pokémon cries)
 
-## Acknowledgments
+ Dark mode
 
-- [PokéAPI](https://pokeapi.co/) for the comprehensive Pokémon data
-- [Next.js](https://nextjs.org/) for the amazing React framework
-- [TailwindCSS](https://tailwindcss.com/) for utility-first styling
-- [Framer Motion](https://www.framer.com/motion/) for smooth animations
-- [Lucide](https://lucide.dev/) for beautiful icons
-- [NextAuth.js](https://next-auth.js.org/) for authentication
+ PWA (offline use)
 
-## Contact
+ Advanced filters
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+Deployment
+Deploy on Vercel
+Push repository to GitHub
 
-Project Link: [https://github.com/yourusername/pokedex-lite](https://github.com/yourusername/pokedex-lite)
+Import project to Vercel
 
-## Screenshots
+Deploy using the default Next.js configuration
 
-### Home Page
-Browse and search through all Pokémon with beautiful cards
+Contact
+Parag Mittal
+Repository: https://github.com/parag345/pokedex-lite
 
-### Favorites Page
-Access your saved favorite Pokémon in one place
+Screenshots
+Home Page
+Browse and search Pokémon in a clean UI.
 
-### Pokemon Detail Modal
-View comprehensive information about any Pokémon
+Favorites Page
+Access your saved Pokémon.
 
----
-
-Built with love by [Your Name] using Next.js and TypeScript
+Pokémon Detail Modal
+Full detail view with artwork and stats.
